@@ -2,6 +2,6 @@
 
 namespace Seisigma\DgiiRncValidator;
 
-class DgiiRncValidatorClass
+class DgiiRncValidator
 {
 }
