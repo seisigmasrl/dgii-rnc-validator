@@ -1,16 +1,16 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "seisigmasrl/dgii-rnc-validator",
+    "description": "A simple package to check a given RNC with the official Tax Authority, Dirección General de Impuestos Internos (DGII), in the Dominican Republic.",
     "keywords": [
-        ":vendor_name",
-        ":package_slug"
+        "seisigmasrl",
+        "dgii-rnc-validator"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/seisigmasrl/dgii-rnc-validator",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Ricardo A. Vargas R.",
+            "email": "im@ricardovargas.me",
             "role": "Developer"
         }
     ],
@@ -18,28 +18,29 @@
         "php": "^8.1"
     },
     "require-dev": {
-        :require_dev_testing,
-        :require_dev_codestyle,
+        "pestphp/pest": "^1.20",
+        "laravel/pint": "^1.2",
         "spatie/ray": "^1.28"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src"
+            "Seisigma\\DgiiRncValidator\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Seisigma\\DgiiRncValidator\\Tests\\": "tests"
         }
     },
     "scripts": {
-        :scripts_testing,
-        :scripts_codestyle
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            :plugins_testing,
+            "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         }
     },
