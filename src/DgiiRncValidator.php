@@ -55,7 +55,7 @@ class DgiiRncValidator
             'rnc' => $id,
             'name' => $name,
             'commercial_name' => $commercialName,
-            'status' => Status::from($status)->toString(),
+            'status' => Status::from((int)$status)->toString(),
         ];
     }
 }
