@@ -22,7 +22,7 @@ This approach is excellent for improving performance, but It's not optimal for s
 - Validate RNC's
 - Verify if the Given RNC it's valid.
 
-But how? There's 'somewhere' 😅, a "real" public non-documented endpoint used by the Tax Authorities that provide a set of tools to validate the information with the DGII. This endpoint provides several options, but we will only use the RNC Validation for the scope of this package.
+But how? There's 'somewhere' 😅, a "real" public non-documented endpoint used by the Tax Authorities that provide a set of tools to validate information with the DGII. This endpoint provides several options, but we will only use the RNC Validation for the scope of this package.
 
 Here's the list of the provided methods by this package:
 
