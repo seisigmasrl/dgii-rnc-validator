@@ -9,10 +9,9 @@ enum Status: int
 
     public function toString(): string
     {
-        return match ($this)
-        {
-            Status::ACTIVE => "Active",
-            Status::INACTIVE => "Inactive"
+        return match ($this) {
+            Status::ACTIVE => 'Active',
+            Status::INACTIVE => 'Inactive'
         };
     }
 }
