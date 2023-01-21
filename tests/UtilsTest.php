@@ -1,6 +1,6 @@
 <?php
 
-use Seisigma\DgiiRncValidator\Utils;
+use Seisigma\DgiiRncValidator\Helpers\Utils;
 
 test('return a number from a given string', function () {
     expect(Utils::getNumbers("123456789"))->toBeString()
@@ -14,4 +14,9 @@ test('testing luhnAlgorithm with a valid id', function(){
     $invalidAccount = Utils::luhnAlgorithmValidation("79927398715");
     expect($validAccount)->toBeTrue()
         ->and($invalidAccount)->toBeFalse();
+});
+
+it('can validate a Dominican official ID number', function () {
+    expect(Utils::validateDominicanCitizenId("04800009575"))->toBeTrue()
+        ->and(Utils::validateDominicanCitizenId("04800009577"))->toBeFalse();
 });

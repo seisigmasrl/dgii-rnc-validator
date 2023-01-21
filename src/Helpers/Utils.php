@@ -9,7 +9,7 @@
  * file that was distributed with the source code.
  */
 
-namespace Seisigma\DgiiRncValidator;
+namespace Seisigma\DgiiRncValidator\Helpers;
 
 final class Utils
 {
@@ -28,7 +28,7 @@ final class Utils
     {
         $pairs = [];
         $number = Utils::getNumbers($entry);
-        $check = substr($entry, 0,(strlen($entry)-1));
+        $check = substr($entry, 0,(strlen($number)-1));
         $verificationDigit = substr($entry, -1, 1);
         for($i=0; $i < strlen($check); $i++){
             if($i%2){
@@ -49,7 +49,7 @@ final class Utils
     {
         $id = Utils::getNumbers($id);
         preg_match('/^(\d{11})$/', $id,$matches);
-        if(!(bool)count($matches))
+        if(empty($matches))
             throw new \Exception("Please provide a legit Dominican Citizen Id.");
 
         return Utils::luhnAlgorithmValidation($id);
