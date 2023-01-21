@@ -15,7 +15,8 @@
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-soap": "*"
     },
     "require-dev": {
         "pestphp/pest": "^1.20",
@@ -24,7 +25,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Seisigma\\DgiiRncValidator\\": "src\\DgiiRncValidator"
+            "Seisigma\\DgiiRncValidator\\": "src",
+            "Seisigma\\DgiiRncValidator\\Helpers\\": "src\\helpers"
         }
     },
     "autoload-dev": {
