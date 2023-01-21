@@ -36,6 +36,10 @@ class DgiiRncValidator
         ];
 
         $response = $client->__soapCall("GetContribuyentes", [$params]);
+
+        if(!$response->GetContribuyentesResult)
+            return false;
+
         $results = [
             "RGE_NOMBRE" => $name,
             "NOMBRE_COMERCIAL" => $commercialName,

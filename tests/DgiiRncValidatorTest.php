@@ -11,13 +11,14 @@ test('check if the given string is a valid RNC', function () {
 
 it('can return the details of an RNC if true', function () {
     $id = "132620951";
-    $taxpayer = DgiiRncValidator::check($id);
-    expect($taxpayer)
+    expect(DgiiRncValidator::check($id))
         ->toBeArray()
         ->toMatchArray([
             "rnc" => $id,
             "name" => "KOI CORPORATION BY SAIKOV SRL",
             "commercial_name" => "KOI CORPORATION BY SAIKOV",
             "status" => "Active"
-        ]);
+        ])
+        ->and(DgiiRncValidator::check("123456789"))
+        ->toBeFalse();
 });
