@@ -10,12 +10,6 @@ class DgiiRncValidator
 {
     private string $rnc;
 
-    private function parseJson(string $string): array
-    {
-        ray($string);
-        return json_decode(json_encode($string));
-    }
-
     public static function validateRNC(string $string): bool
     {
         $cleanedId = Utils::getNumbers($string);
