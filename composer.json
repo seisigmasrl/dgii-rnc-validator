@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Seisigma\\DgiiRncValidator\\": "src"
+            "Seisigma\\DgiiRncValidator\\": "src\\DgiiRncValidator"
         }
     },
     "autoload-dev": {
