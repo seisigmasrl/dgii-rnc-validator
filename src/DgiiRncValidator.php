@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Seisigma\DgiiRncValidator;
 
 use Seisigma\DgiiRncValidator\Helpers\Status;
+use Seisigma\DgiiRncValidator\Helpers\Types;
 use Seisigma\DgiiRncValidator\Helpers\Utils;
 use SoapClient;
 
@@ -18,6 +19,15 @@ class DgiiRncValidator
         preg_match('/^(\d{9}|\d{11})$/', $cleanedId, $matches);
 
         return (bool) count($matches);
+    }
+
+    public static function rncType(string $string): bool | Types
+    {
+        if (self::validateRNC($string)) {
+            return (strlen($string) === 9) ? Types::RNC : Types::CEDULA;
+        }
+
+        return false;
     }
 
     /**
