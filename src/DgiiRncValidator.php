@@ -21,10 +21,10 @@ class DgiiRncValidator
         return (bool) count($matches);
     }
 
-    public static function rncType(string $string): bool|string
+    public static function rncType(string $string): bool|Types
     {
         if (self::validateRNC($string)) {
-            return (strlen($string) === 9) ? Types::RNC->toString() : Types::CEDULA->toString();
+            return (strlen($string) === 9) ? Types::RNC : Types::CEDULA;
         }
 
         return false;
