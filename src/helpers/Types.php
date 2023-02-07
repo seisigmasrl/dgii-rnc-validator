@@ -18,4 +18,13 @@ enum Types: int
             self::PASSPORT => 'PASSPORT',
         };
     }
+
+    public function toCode(): string
+    {
+        return match ($this) {
+            self::RNC => '01',
+            self::CEDULA => '02',
+            self::PASSPORT => '03',
+        };
+    }
 }
