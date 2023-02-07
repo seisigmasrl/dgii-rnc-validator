@@ -18,4 +18,13 @@ enum Types: int
             self::PASSPORT => 'Pasaporte',
         };
     }
+
+    public function fromString(string $string): self
+    {
+        return match ($string) {
+            'RNC' => self::RNC,
+            'Cédula' => self::CEDULA,
+            'Pasaporte' => self::PASSPORT,
+        };
+    }
 }
