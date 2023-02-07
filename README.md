@@ -59,8 +59,23 @@ $validatedRnc = DgiiRncValidator::validateRNC("132620951");
 var_dump($validatedRnc); // bool(true)
 
 // 123456789 is an invalid RNC
-$validatedRnc = DgiiRncValidator::check("123456789");
+$validatedRnc = DgiiRncValidator::validateRNC("123456789");
 var_dump($validatedRnc); // bool(false)
+```
+
+### rncType
+Validate if a given string is a valid RNC.<br>
+__How to use it:__
+```php
+require Seisigma\DgiiRncValidator\DgiiRncValidator;
+...
+// 132620951 is a valid RNC
+$rncType = DgiiRncValidator::rncType("132620951");
+var_dump($rncType); // string(RNC)
+
+// 123456789 is an invalid RNC
+$rncType = DgiiRncValidator::rncType("04800009577");
+var_dump($rncType); // string(Cédula)
 ```
 
 ## Helper Functions
