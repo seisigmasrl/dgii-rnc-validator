@@ -71,11 +71,23 @@ require Seisigma\DgiiRncValidator\DgiiRncValidator;
 ...
 // 132620951 is a valid RNC
 $rncType = DgiiRncValidator::rncType("132620951");
-var_dump($rncType); // string(RNC)
+var_dump($rncType); // enum(Types::RNC)
 
 // 123456789 is an invalid RNC
 $rncType = DgiiRncValidator::rncType("04800009577");
-var_dump($rncType); // string(Cédula)
+var_dump($rncType); // enum(Types::CEDULA)
+```
+
+The Type enum includes two functions:
+- `toString`: Return the string value from the returned enum.
+Ex:
+```php
+var_dump(Types::RNC->toString()) // string(RNC)
+```
+- `toCode`: Return the DGII type code value from the returned enum.
+  Ex:
+```php
+var_dump(Types::RNC->toCode()) // string(01)
 ```
 
 ## Helper Functions
