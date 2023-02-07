@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Seisigma\DgiiRncValidator\Helpers;
 
 enum Types: int
