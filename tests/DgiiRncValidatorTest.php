@@ -11,7 +11,7 @@ test('check if the given string is a valid RNC', function () {
 
 test('check rncType return the type name', function () {
     expect(DgiiRncValidator::rncType('123456789'))->toBe('RNC')
-        ->and(DgiiRncValidator::rncType('12345678901'))->toBe('Cédula');
+        ->and(DgiiRncValidator::rncType('12345678901'))->toBe('CEDULA');
 });
 
 it('can return the details of an RNC if true', function () {

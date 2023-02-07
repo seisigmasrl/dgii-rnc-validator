@@ -14,17 +14,8 @@ enum Types: int
     {
         return match ($this) {
             self::RNC => 'RNC',
-            self::CEDULA => 'Cédula',
-            self::PASSPORT => 'Pasaporte',
-        };
-    }
-
-    public function fromString(string $string): self
-    {
-        return match ($string) {
-            'RNC' => self::RNC,
-            'Cédula' => self::CEDULA,
-            'Pasaporte' => self::PASSPORT,
+            self::CEDULA => 'CEDULA',
+            self::PASSPORT => 'PASSPORT',
         };
     }
 }
