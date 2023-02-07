@@ -1,6 +1,6 @@
 <?php
 
-use Seisigma\DgiiRncValidator\Helpers\Utils;
+use Seisigma\DgiiRncValidator\helpers\Utils;
 
 test('return a number from a given string', function () {
     expect(Utils::getNumbers('123456789'))->toBeString()

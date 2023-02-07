@@ -84,8 +84,9 @@ Just in case you need a few extra tools, here's a list of utility functions:
 ### getNumbers
 This function returns all numbers from any provided string.<br>
 __How to use it:__
+
 ```php
-require Seisigma\DgiiRncValidator\Helpers\Utils;
+require Seisigma\DgiiRncValidator\helpers\Utils;
 ...
 $results = Utils::getNumbers("abc123456");
 var_dump($results); // string(6) "123456"
@@ -97,8 +98,9 @@ var_dump($results); // bool(false)
 ### luhnAlgorithmValidation
 This function validates if the given sequence of digits has a valid key (checksum).<br>
 __How to use it:__
+
 ```php
-require Seisigma\DgiiRncValidator\Helpers\Utils;
+require Seisigma\DgiiRncValidator\helpers\Utils;
 ...
 $result = Utils::luhnAlgorithmValidation("79927398713");
 var_dump($result); // bool(true)
@@ -110,8 +112,9 @@ var_dump($result); // bool(false)
 ### validateDominicanCitizenId
 This function validates if the given sequence of digits is a valid Dominican Citizen Id.<br>
 __How to use it:__
+
 ```php
-require Seisigma\DgiiRncValidator\Helpers\Utils;
+require Seisigma\DgiiRncValidator\helpers\Utils;
 ...
 $result = Utils::validateDominicanCitizenId("04800009575");
 var_dump($result); // bool(true)

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Seisigma\DgiiRncValidator;
 
-use Seisigma\DgiiRncValidator\Helpers\Status;
-use Seisigma\DgiiRncValidator\Helpers\Types;
-use Seisigma\DgiiRncValidator\Helpers\Utils;
+use Seisigma\DgiiRncValidator\helpers\Status;
+use Seisigma\DgiiRncValidator\helpers\Types;
+use Seisigma\DgiiRncValidator\helpers\Utils;
 use SoapClient;
 
 class DgiiRncValidator
