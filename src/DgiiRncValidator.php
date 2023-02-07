@@ -21,7 +21,7 @@ class DgiiRncValidator
         return (bool) count($matches);
     }
 
-    public static function rncType(string $string): bool | string
+    public static function rncType(string $string): bool|string
     {
         if (self::validateRNC($string)) {
             return (strlen($string) === 9) ? Types::RNC->toString() : Types::CEDULA->toString();
@@ -65,7 +65,7 @@ class DgiiRncValidator
             'rnc' => $id,
             'name' => $name,
             'commercial_name' => $commercialName,
-            'status' => Status::from((int)$status)->toString(),
+            'status' => Status::from((int) $status)->toString(),
         ];
     }
 }
