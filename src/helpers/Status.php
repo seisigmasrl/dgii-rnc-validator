@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Seisigma\DgiiRncValidator\Helpers;
+namespace Seisigma\DgiiRncValidator\helpers;
 
 enum Status: int
 {

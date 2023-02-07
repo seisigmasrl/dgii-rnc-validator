@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with the source code.
  */
 
-namespace Seisigma\DgiiRncValidator\Helpers;
+namespace Seisigma\DgiiRncValidator\helpers;
 
 final class Utils
 {
