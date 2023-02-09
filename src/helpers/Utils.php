@@ -19,7 +19,7 @@ final class Utils
     {
         preg_match_all('/\d+/', $string, $matches);
 
-        return count($matches) ? implode(reset($matches)) : false;
+        return count($matches[0]) ? implode($matches[0]) : false;
     }
 
     public static function getNumbers(string $string): string|bool
