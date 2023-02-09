@@ -17,9 +17,9 @@ final class Utils
 {
     private function getNumbersFromString(string $string): string|bool
     {
-        preg_match('/\d+/', $string, $matches);
+        preg_match_all('/\d+/', $string, $matches);
 
-        return count($matches) ? $matches[0] : false;
+        return count($matches[0]) ? implode($matches[0]) : false;
     }
 
     public static function getNumbers(string $string): string|bool
