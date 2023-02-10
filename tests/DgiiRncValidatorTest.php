@@ -23,7 +23,7 @@ it('can return the details of an RNC if true', function () {
             'rnc' => $id,
             'name' => 'KOI CORPORATION BY SAIKOV SRL',
             'commercial_name' => 'KOI CORPORATION BY SAIKOV',
-            'status' => 'Active',
+            'status' => 'ACTIVO',
         ])
         ->and(DgiiRncValidator::check('123456789'))
         ->toBeFalse();
