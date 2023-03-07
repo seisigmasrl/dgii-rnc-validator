@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/seisigmasrl/dgii-rnc-validator.svg?style=flat-square)](https://packagist.org/packages/seisigmasrl/dgii-rnc-validator)
 [![Tests](https://img.shields.io/github/actions/workflow/status/seisigmasrl/dgii-rnc-validator/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/seisigmasrl/dgii-rnc-validator/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/seisigmasrl/dgii-rnc-validator.svg?style=flat-square)](https://packagist.org/packages/seisigmasrl/dgii-rnc-validator)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fseisigmasrl%2Fdgii-rnc-validator.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2Fseisigmasrl%2Fdgii-rnc-validator?ref=badge_small)
 
 A simple package to check a given RNC with the official Tax Authority, Dirección General de Impuestos Internos (DGII), in the Dominican Republic and few more options.
 
@@ -161,3 +162,6 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Audits
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fseisigmasrl%2Fdgii-rnc-validator.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fseisigmasrl%2Fdgii-rnc-validator?ref=badge_large)
