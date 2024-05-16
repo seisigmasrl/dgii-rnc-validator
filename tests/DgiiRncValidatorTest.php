@@ -28,3 +28,12 @@ it('can return the details of an RNC if true', function () {
         ->and(DgiiRncValidator::check('123456789'))
         ->toBeFalse();
 });
+
+test('check if the given string without numbers is a valid RNC', function () {
+	$id = 'abc cdd';
+	expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
+	$id = ' ';
+	expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
+	$id = '';
+	expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
+});
