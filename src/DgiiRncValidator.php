@@ -16,6 +16,11 @@ class DgiiRncValidator
     public static function validateRNC(string $string): bool
     {
         $cleanedId = Utils::getNumbers($string);
+
+		if (!$cleanedId) {
+			return false;
+		}
+
         preg_match('/^(\d{9}|\d{11})$/', $cleanedId, $matches);
 
         return (bool) count($matches);
