@@ -5,6 +5,9 @@ on:
     paths:
       - '**.php'
 
+permissions:
+  contents: write
+
 jobs:
   php-code-styling:
     runs-on: ubuntu-latest
@@ -14,6 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fix PHP code style issues
         uses: aglipanci/laravel-pint-action@2.6
