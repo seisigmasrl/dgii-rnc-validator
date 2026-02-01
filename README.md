@@ -101,6 +101,28 @@ var_dump(Types::RNC->toString()) // string(RNC)
 var_dump(Types::RNC->toCode()) // string(01)
 ```
 
+### Status Enum
+The `check()` method returns the taxpayer status as a normalized string. You can also use the Status enum directly to work with status values.
+
+```php
+use Seisigma\DgiiRncValidator\helpers\Status;
+
+// Convert a string to Status enum
+$status = Status::fromString("ACTIVO");
+var_dump($status); // enum(Status::ACTIVE)
+
+// Get the string representation
+var_dump(Status::ACTIVE->toString()); // string(6) "ACTIVO"
+```
+
+Available status values:
+| Enum | String Value | Description |
+|------|--------------|-------------|
+| `Status::ACTIVE` | ACTIVO | Active taxpayer |
+| `Status::INACTIVE` | INACTIVO | Inactive taxpayer |
+| `Status::SUSPENSE` | SUSPENDIDO | Suspended taxpayer |
+| `Status::DECOMMISSIONED` | DADO DE BAJA | Decommissioned taxpayer |
+
 ## Helper Functions
 Just in case you need a few extra tools, here's a list of utility functions:
 
