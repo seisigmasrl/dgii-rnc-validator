@@ -30,10 +30,10 @@ it('can return the details of an RNC if true', function () {
 });
 
 test('check if the given string without numbers is a valid RNC', function () {
-	$id = 'abc cdd';
-	expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
-	$id = ' ';
-	expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
-	$id = '';
-	expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
+    $id = 'abc cdd';
+    expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
+    $id = ' ';
+    expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
+    $id = '';
+    expect(DgiiRncValidator::validateRNC($id))->toBeFalse();
 });
