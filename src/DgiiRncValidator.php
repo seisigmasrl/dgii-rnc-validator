@@ -6,6 +6,7 @@ namespace Seisigma\DgiiRncValidator;
 
 use InvalidArgumentException;
 use Seisigma\DgiiRncValidator\Exceptions\DgiiServiceException;
+use Seisigma\DgiiRncValidator\helpers\Status;
 use Seisigma\DgiiRncValidator\helpers\Types;
 use Seisigma\DgiiRncValidator\helpers\Utils;
 
@@ -184,11 +185,13 @@ class DgiiRncValidator
             return false;
         }
 
+        $status = Status::fromString($data['status'] ?? '');
+
         return [
             'rnc' => $id,
             'name' => $data['name'],
             'commercial_name' => $data['commercial_name'] ?? '',
-            'status' => $data['status'] ?? '',
+            'status' => $status?->toString() ?? $data['status'] ?? '',
         ];
     }
 }

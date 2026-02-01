@@ -20,4 +20,15 @@ enum Status: int
             self::SUSPENSE => 'SUSPENDIDO',
         };
     }
+
+    public static function fromString(string $status): ?self
+    {
+        return match (strtoupper(trim($status))) {
+            'DADO DE BAJA' => self::DECOMMISSIONED,
+            'ACTIVO' => self::ACTIVE,
+            'INACTIVO' => self::INACTIVE,
+            'SUSPENDIDO' => self::SUSPENSE,
+            default => null,
+        };
+    }
 }
