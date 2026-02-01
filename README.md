@@ -7,6 +7,10 @@
 
 A simple package to check a given RNC with the official Tax Authority, Dirección General de Impuestos Internos (DGII), in the Dominican Republic and few more options.
 
+## Requirements
+
+- PHP >= 8.1
+
 ## Installation
 
 You can install the package via composer:
@@ -19,20 +23,20 @@ composer require seisigmasrl/dgii-rnc-validator
 This package aims to bring you a simple way to check and validate if a given RNC is valid and its current status with the tax authorities.
 Most existing solutions are based on parsing a monthly shared file with all the existing RNC by the Dirección General de Impuestos Internos (DGII), the official Tax Authority in the Dominican Republic.
 
-This approach is excellent for improving performance, but It's not optimal for services requiring life, trusted information. For this reason, the current package provides a simple API to:
+This approach is excellent for improving performance, but it's not optimal for services requiring live, trusted information. For this reason, the current package provides a simple API to:
 - Validate RNC's
-- Verify if the Given RNC it's valid.
+- Verify if the given RNC is valid.
 
-But how? There's 'somewhere' 😅, a "real" public non-documented endpoint used by the Tax Authorities that provide a set of tools to validate information with the DGII. This endpoint provides several options, but we will only use the RNC Validation for the scope of this package.
+The package fetches data directly from the official DGII web portal to ensure you always get up-to-date information.
 
 Here's the list of the provided methods by this package:
 
 ### Check
-Validate if a given RNC is valid and returns the details of the Taxpayer but false if not valid.<br>
+Validate if a given RNC is valid and returns the details of the Taxpayer, or `false` if not found.<br>
 __How to use it:__
 ```php
-require Seisigma\DgiiRncValidator\DgiiRncValidator;
-...
+use Seisigma\DgiiRncValidator\DgiiRncValidator;
+
 // 132620951 is a valid RNC
 $validatedRnc = DgiiRncValidator::check("132620951");
 var_dump($validatedRnc);
@@ -41,45 +45,51 @@ var_dump($validatedRnc);
 //    ["rnc"]=> string(9) "132620951"
 //    ["name"]=> string(29) "KOI CORPORATION BY SAIKOV SRL"
 //    ["commercial_name"]=> string(25) "KOI CORPORATION BY SAIKOV"
-//    ["status"]=> string(6) "Active"
+//    ["status"]=> string(6) "ACTIVO"
 // }
 
-// 123456789 is an invalid RNC
+// 123456789 is not registered in DGII
 $validatedRnc = DgiiRncValidator::check("123456789");
 var_dump($validatedRnc); // bool(false)
 ```
 
 ### validateRNC
-Validate if a given string is a valid RNC.<br>
+Validate if a given string has a valid RNC format (9 digits) or Cedula format (11 digits).<br>
 __How to use it:__
 ```php
-require Seisigma\DgiiRncValidator\DgiiRncValidator;
-...
-// 132620951 is a valid RNC
-$validatedRnc = DgiiRncValidator::validateRNC("132620951");
-var_dump($validatedRnc); // bool(true)
+use Seisigma\DgiiRncValidator\DgiiRncValidator;
 
-// 123456789 is an invalid RNC
-$validatedRnc = DgiiRncValidator::validateRNC("123456789");
-var_dump($validatedRnc); // bool(false)
+$validatedRnc = DgiiRncValidator::validateRNC("132620951");
+var_dump($validatedRnc); // bool(true) - valid 9-digit RNC format
+
+$validatedRnc = DgiiRncValidator::validateRNC("12345678901");
+var_dump($validatedRnc); // bool(true) - valid 11-digit Cedula format
+
+$validatedRnc = DgiiRncValidator::validateRNC("12345");
+var_dump($validatedRnc); // bool(false) - invalid format
 ```
 
 ### rncType
-Validate if a given string is a valid RNC.<br>
+Returns the type of identifier (RNC or Cedula) based on the string length.<br>
 __How to use it:__
 ```php
-require Seisigma\DgiiRncValidator\DgiiRncValidator;
-...
-// 132620951 is a valid RNC
+use Seisigma\DgiiRncValidator\DgiiRncValidator;
+use Seisigma\DgiiRncValidator\helpers\Types;
+
+// 9-digit identifier = RNC (business)
 $rncType = DgiiRncValidator::rncType("132620951");
 var_dump($rncType); // enum(Types::RNC)
 
-// 123456789 is an invalid RNC
+// 11-digit identifier = Cedula (person)
 $rncType = DgiiRncValidator::rncType("04800009577");
 var_dump($rncType); // enum(Types::CEDULA)
+
+// Invalid format returns false
+$rncType = DgiiRncValidator::rncType("12345");
+var_dump($rncType); // bool(false)
 ```
 
-The Type enum includes two functions:
+The Types enum includes two functions:
 - `toString`: Return the string value from the returned enum.
 Ex:
 ```php
@@ -99,8 +109,8 @@ This function returns all numbers from any provided string.<br>
 __How to use it:__
 
 ```php
-require Seisigma\DgiiRncValidator\helpers\Utils;
-...
+use Seisigma\DgiiRncValidator\helpers\Utils;
+
 $results = Utils::getNumbers("abc123456");
 var_dump($results); // string(6) "123456"
 
@@ -113,8 +123,8 @@ This function validates if the given sequence of digits has a valid key (checksu
 __How to use it:__
 
 ```php
-require Seisigma\DgiiRncValidator\helpers\Utils;
-...
+use Seisigma\DgiiRncValidator\helpers\Utils;
+
 $result = Utils::luhnAlgorithmValidation("79927398713");
 var_dump($result); // bool(true)
 
@@ -127,14 +137,38 @@ This function validates if the given sequence of digits is a valid Dominican Cit
 __How to use it:__
 
 ```php
-require Seisigma\DgiiRncValidator\helpers\Utils;
-...
+use Seisigma\DgiiRncValidator\helpers\Utils;
+
 $result = Utils::validateDominicanCitizenId("04800009575");
 var_dump($result); // bool(true)
 
 $result = Utils::validateDominicanCitizenId("04800009577");
 var_dump($result); // bool(false)
 ```
+
+## Exception Handling
+
+The `check()` method may throw exceptions when there are issues connecting to the DGII service:
+
+```php
+use Seisigma\DgiiRncValidator\DgiiRncValidator;
+use Seisigma\DgiiRncValidator\Exceptions\DgiiServiceException;
+
+try {
+    $result = DgiiRncValidator::check("132620951");
+} catch (InvalidArgumentException $e) {
+    // Invalid RNC format provided
+} catch (DgiiServiceException $e) {
+    // Service-related error (connection failed, access denied, timeout, etc.)
+    echo $e->getMessage();
+}
+```
+
+The `DgiiServiceException` is thrown in the following scenarios:
+- **Connection failed**: Unable to connect to DGII service
+- **Access denied**: Request was blocked by DGII (403 error)
+- **Invalid page structure**: The DGII website structure has changed
+- **Timeout**: Request to DGII service timed out
 
 ## Testing
 
