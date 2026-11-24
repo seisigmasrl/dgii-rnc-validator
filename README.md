@@ -182,20 +182,43 @@ try {
     // Invalid RNC format provided
 } catch (DgiiServiceException $e) {
     // Service-related error (connection failed, access denied, timeout, etc.)
-    echo $e->getMessage();
+    echo $e->getMessage();          // Human-readable reason
+    print_r($e->context());         // ['step' => 'form'|'search', 'http_status' => 503, 'reason' => '...']
 }
 ```
 
+`check()` returns `false` only when DGII says the RNC/Cédula is not registered.
+Any other answer without taxpayer data throws a `DgiiServiceException`, so "not found" and "DGII failed" are never mixed up.
+
 The `DgiiServiceException` is thrown in the following scenarios:
-- **Connection failed**: Unable to connect to DGII service
+- **Connection failed**: Unable to connect to DGII service (the network error is in the message)
+- **Server error**: DGII answered with HTTP 5xx
+- **Unexpected status**: DGII answered with another non-200 HTTP status
 - **Access denied**: Request was blocked by DGII (403 error)
 - **Invalid page structure**: The DGII website structure has changed
+- **Unexpected response**: The search page has no taxpayer data and no "not registered" message (the DGII message, if any, is in the exception message)
 - **Timeout**: Request to DGII service timed out
+
+Use `$e->context()` to log the step, HTTP status and number of attempts of the failed request.
+
+### Retry
+
+The DGII search sometimes fails for a moment and answers "Ocurrió un error al intentar realizar la búsqueda".
+`check()` asks DGII again once when that happens. It also asks again after a timeout, a network error or an HTTP 5xx.
+It never asks again when DGII blocks the request (403) or says the RNC is not registered.
+
+```php
+DgiiRncValidator::retry(attempts: 3, delayMs: 500); // Default: 2 attempts, 1000 ms apart
+DgiiRncValidator::retry(attempts: 1);               // Turn retry off
+```
+
+Use `$e->isRetryable()` to know if a later call can work.
 
 ## Testing
 
 ```bash
-composer test
+composer test        # Offline tests with saved DGII pages
+composer test-live   # Calls the real DGII website
 ```
 
 ## Changelog
