@@ -12,7 +12,8 @@ All notable changes to `dgii-rnc-validator` will be documented in this file.
 - `check()` asks DGII again once when the failure is short-lived: the DGII "Ocurrió un error al intentar realizar la búsqueda" page, a timeout, a network error or HTTP 5xx. Change it with `DgiiRncValidator::retry($attempts, $delayMs)`. `DgiiServiceException::isRetryable()` tells if a later call can work, and `context()['attempts']` gives the number of tries.
 - Add `DgiiRncValidator::useTransport()` to fake DGII in tests.
 - Tests run offline with saved DGII pages. The live test moved to `composer test-live`.
-- Upgrade Pest to v2/v3 (PHP 8.4 support), Pint and Ray. Add PHP 8.4 to CI.
+- **Breaking for PHP 8.1:** require PHP 8.2 or higher. PHP 8.1 has had no security fixes since 2025-12-31, and no secure PHPUnit version runs on it. Apps on PHP 8.1 stay on 2.0.x.
+- Upgrade Pest to v3 (PHP 8.4 support), Pint and Ray. Test on PHP 8.2, 8.3 and 8.4 in CI.
 
 ## 1.1.7 - 2024-05-16
 

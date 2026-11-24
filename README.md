@@ -9,7 +9,7 @@ A simple package to check a given RNC with the official Tax Authority, Direcció
 
 ## Requirements
 
-- PHP >= 8.1
+- PHP >= 8.2
 
 ## Installation
 
