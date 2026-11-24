@@ -2,7 +2,7 @@
 
 All notable changes to `dgii-rnc-validator` will be documented in this file.
 
-## 2.1.0 - Unreleased
+## 2.1.0 - 2026-11-24
 
 - Read the real HTTP status code of the final response. Before, any status line with a "5" in it was treated as a server error, and 4xx codes other than 403 were accepted.
 - Send the cookies of the DGII form page (load balancer and session) with the search request, as a browser does.
