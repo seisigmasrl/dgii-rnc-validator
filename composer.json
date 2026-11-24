@@ -1,6 +1,6 @@
 {
     "name": "seisigmasrl/dgii-rnc-validator",
-    "description": "A simple package to check a given RNC with the official Tax Authority, Dirección General de Impuestos Internos (DGII), in the Dominican Republic.",
+    "description": "A simple package to check a given RNC with the official Tax Authority, Direcci\u00f3n General de Impuestos Internos (DGII), in the Dominican Republic.",
     "keywords": [
         "seisigmasrl",
         "dgii-rnc-validator"
@@ -18,9 +18,9 @@
         "php": ">=8.1"
     },
     "require-dev": {
-        "pestphp/pest": "^1.22.4",
-        "laravel/pint": "^1.4.1",
-        "spatie/ray": "^1.36"
+        "laravel/pint": "^1.18",
+        "pestphp/pest": "^2.36|^3.8",
+        "spatie/ray": "^1.41"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +36,8 @@
     "scripts": {
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "test-live": "vendor/bin/pest --group=live"
     },
     "config": {
         "sort-packages": true,
