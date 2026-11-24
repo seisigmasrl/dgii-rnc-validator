@@ -24,7 +24,7 @@ final class Utils
 
     public static function getNumbers(string $string): string|bool
     {
-        return (new self())->getNumbersFromString($string);
+        return (new self)->getNumbersFromString($string);
     }
 
     public static function luhnAlgorithmValidation(string $entry): bool
